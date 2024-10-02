@@ -8,8 +8,8 @@ class StartupViewModel extends BaseViewModel {
 
   /// Place anything here that needs to happen before we get into the application
   Future runStartupLogic() async {
-    await Future.delayed(const Duration(seconds: 3000));
+    await Future.delayed(const Duration(seconds: 5));
 
-    _navigationService.replaceWithHomeView();
+    _navigationService.replaceWithOnboardingView();
   }
 }

@@ -73,4 +73,6 @@ class AppColors {
   static const kcWarning10 = Color(0xffFFD36C);
   static const kcWarning20 = Color(0xffFFE6AA);
   static const kcWarning30 = Color(0xffFFF9E9);
+
+  static const Color textFieldColor = Color(0xffFAF7F8);
 }
