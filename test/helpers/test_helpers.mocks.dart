@@ -689,9 +689,9 @@ class MockSecureStorageService extends _i1.Mock
       ) as _i5.Future<void>);
 
   @override
-  _i5.Future<void> deleteRefreshToken() => (super.noSuchMethod(
+  _i5.Future<void> deleteFirstTimeUser() => (super.noSuchMethod(
         Invocation.method(
-          #deleteRefreshToken,
+          #deleteFirstTimeUser,
           [],
         ),
         returnValue: _i5.Future<void>.value(),
@@ -699,9 +699,9 @@ class MockSecureStorageService extends _i1.Mock
       ) as _i5.Future<void>);
 
   @override
-  _i5.Future<String?> readRefreshToken() => (super.noSuchMethod(
+  _i5.Future<String?> readFirstTimeUser() => (super.noSuchMethod(
         Invocation.method(
-          #readRefreshToken,
+          #readFirstTimeUser,
           [],
         ),
         returnValue: _i5.Future<String?>.value(),
@@ -731,11 +731,12 @@ class MockSecureStorageService extends _i1.Mock
       ) as _i5.Future<void>);
 
   @override
-  _i5.Future<void> writeRefreshToken({String? token}) => (super.noSuchMethod(
+  _i5.Future<void> writeFirstTimeUser({String? firstTimeUser}) =>
+      (super.noSuchMethod(
         Invocation.method(
-          #writeRefreshToken,
+          #writeFirstTimeUser,
           [],
-          {#token: token},
+          {#firstTimeUser: firstTimeUser},
         ),
         returnValue: _i5.Future<void>.value(),
         returnValueForMissingStub: _i5.Future<void>.value(),
