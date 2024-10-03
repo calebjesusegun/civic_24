@@ -20,4 +20,9 @@ class RegisterViewModel extends FormViewModel with $RegisterView {
     _navigationService.navigateToRegisterPasswordView(emailAddress: email);
     _logger.i("Email Address: $email");
   }
+
+  /// Method to route to the login view
+  void actionRouteToLoginView() {
+    _navigationService.navigateToLoginView();
+  }
 }

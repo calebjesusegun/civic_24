@@ -6,15 +6,16 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:civic_24/ui/views/home/home_view.dart' as _i2;
+import 'package:civic_24/ui/views/login/login_view.dart' as _i7;
 import 'package:civic_24/ui/views/onboarding/onboarding_view.dart' as _i4;
 import 'package:civic_24/ui/views/register/register_password/register_password_view.dart'
     as _i6;
 import 'package:civic_24/ui/views/register/register_view.dart' as _i5;
 import 'package:civic_24/ui/views/startup/startup_view.dart' as _i3;
-import 'package:flutter/material.dart' as _i7;
+import 'package:flutter/material.dart' as _i8;
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart' as _i1;
-import 'package:stacked_services/stacked_services.dart' as _i8;
+import 'package:stacked_services/stacked_services.dart' as _i9;
 
 class Routes {
   static const homeView = '/home-view';
@@ -27,12 +28,15 @@ class Routes {
 
   static const registerPasswordView = '/register-password-view';
 
+  static const loginView = '/login-view';
+
   static const all = <String>{
     homeView,
     startupView,
     onboardingView,
     registerView,
     registerPasswordView,
+    loginView,
   };
 }
 
@@ -58,38 +62,48 @@ class StackedRouter extends _i1.RouterBase {
       Routes.registerPasswordView,
       page: _i6.RegisterPasswordView,
     ),
+    _i1.RouteDef(
+      Routes.loginView,
+      page: _i7.LoginView,
+    ),
   ];
 
   final _pagesMap = <Type, _i1.StackedRouteFactory>{
     _i2.HomeView: (data) {
-      return _i7.MaterialPageRoute<dynamic>(
+      return _i8.MaterialPageRoute<dynamic>(
         builder: (context) => const _i2.HomeView(),
         settings: data,
       );
     },
     _i3.StartupView: (data) {
-      return _i7.MaterialPageRoute<dynamic>(
+      return _i8.MaterialPageRoute<dynamic>(
         builder: (context) => const _i3.StartupView(),
         settings: data,
       );
     },
     _i4.OnboardingView: (data) {
-      return _i7.MaterialPageRoute<dynamic>(
+      return _i8.MaterialPageRoute<dynamic>(
         builder: (context) => const _i4.OnboardingView(),
         settings: data,
       );
     },
     _i5.RegisterView: (data) {
-      return _i7.MaterialPageRoute<dynamic>(
+      return _i8.MaterialPageRoute<dynamic>(
         builder: (context) => const _i5.RegisterView(),
         settings: data,
       );
     },
     _i6.RegisterPasswordView: (data) {
       final args = data.getArgs<RegisterPasswordViewArguments>(nullOk: false);
-      return _i7.MaterialPageRoute<dynamic>(
+      return _i8.MaterialPageRoute<dynamic>(
         builder: (context) => _i6.RegisterPasswordView(
             emailAddress: args.emailAddress, key: args.key),
+        settings: data,
+      );
+    },
+    _i7.LoginView: (data) {
+      return _i8.MaterialPageRoute<dynamic>(
+        builder: (context) => const _i7.LoginView(),
         settings: data,
       );
     },
@@ -110,7 +124,7 @@ class RegisterPasswordViewArguments {
 
   final String emailAddress;
 
-  final _i7.Key? key;
+  final _i8.Key? key;
 
   @override
   String toString() {
@@ -129,7 +143,7 @@ class RegisterPasswordViewArguments {
   }
 }
 
-extension NavigatorStateExtension on _i8.NavigationService {
+extension NavigatorStateExtension on _i9.NavigationService {
   Future<dynamic> navigateToHomeView([
     int? routerId,
     bool preventDuplicates = true,
@@ -188,7 +202,7 @@ extension NavigatorStateExtension on _i8.NavigationService {
 
   Future<dynamic> navigateToRegisterPasswordView({
     required String emailAddress,
-    _i7.Key? key,
+    _i8.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -198,6 +212,20 @@ extension NavigatorStateExtension on _i8.NavigationService {
     return navigateTo<dynamic>(Routes.registerPasswordView,
         arguments:
             RegisterPasswordViewArguments(emailAddress: emailAddress, key: key),
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> navigateToLoginView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return navigateTo<dynamic>(Routes.loginView,
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,
@@ -262,7 +290,7 @@ extension NavigatorStateExtension on _i8.NavigationService {
 
   Future<dynamic> replaceWithRegisterPasswordView({
     required String emailAddress,
-    _i7.Key? key,
+    _i8.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -272,6 +300,20 @@ extension NavigatorStateExtension on _i8.NavigationService {
     return replaceWith<dynamic>(Routes.registerPasswordView,
         arguments:
             RegisterPasswordViewArguments(emailAddress: emailAddress, key: key),
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> replaceWithLoginView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return replaceWith<dynamic>(Routes.loginView,
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,

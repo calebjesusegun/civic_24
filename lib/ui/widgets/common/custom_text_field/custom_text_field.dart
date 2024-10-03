@@ -104,6 +104,7 @@ class CustomTextField extends StackedView<CustomTextFieldModel> {
                 )
               : null,
         ),
+        obscureText: showVisibilityToggle ? !viewModel.passwordVisible : false,
         validator: validator,
         onChanged: onChanged,
         onTap: onTap,

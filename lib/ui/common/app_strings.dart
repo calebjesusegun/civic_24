@@ -11,4 +11,8 @@ class AppText {
   static String ksPassword = 'Password';
   static String ksPreferredPassword = 'Enter your preferred password';
   static String ksPasswordRequired = 'Password Required';
+  static String ksDontHaveAnAccount = "Don’t have an account?";
+  static String ksSignUp = 'SignUp';
+  static String ksAlreadyHaveAnAccount = "Already have an account?";
+  static String ksLogin = 'Login';
 }

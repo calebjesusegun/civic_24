@@ -9,6 +9,7 @@ import 'package:civic_24/ui/views/onboarding/onboarding_view.dart';
 import 'package:civic_24/ui/views/register/register_view.dart';
 import 'package:civic_24/ui/views/register/register_password/register_password_view.dart';
 import 'package:civic_24/services/firebase_service.dart';
+import 'package:civic_24/ui/views/login/login_view.dart';
 // @stacked-import
 
 @StackedApp(
@@ -18,6 +19,7 @@ import 'package:civic_24/services/firebase_service.dart';
     MaterialRoute(page: OnboardingView),
     MaterialRoute(page: RegisterView),
     MaterialRoute(page: RegisterPasswordView),
+    MaterialRoute(page: LoginView),
 // @stacked-route
   ],
   dependencies: [
