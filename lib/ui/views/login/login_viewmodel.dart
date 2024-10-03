@@ -18,12 +18,13 @@ class LoginViewModel extends FormViewModel with $LoginView {
   /// Method to login a new user with email and password
   void submit(String email, String password) async {
     _logger.i("Email Address: $email and Password $password");
+    actionRouteToHomeView();
     // TODO(Civic24): Implement Firebase Login Integration
   }
 
   /// Method to route to success view
   void actionRouteToHomeView() async {
-    _navigationService.navigateToHomeView();
+    _navigationService.navigateToCitizenDashboardView();
   }
 
   /// Method to route to the register view

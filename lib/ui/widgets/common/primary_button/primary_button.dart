@@ -54,7 +54,7 @@ class PrimaryButton extends StackedView<PrimaryButtonModel> {
       width: width ?? double.infinity,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(borderRadius ?? 32.0.r),
-        color: isDisabled ? AppColors.kcPrimary10 : AppColors.kcPrimary,
+        color: isDisabled ? AppColors.kcPrimary10 : AppColors.kcPrimary70,
       ),
       child: Material(
         elevation: elevation ?? 1,

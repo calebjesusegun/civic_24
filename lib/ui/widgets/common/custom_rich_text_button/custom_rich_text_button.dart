@@ -3,7 +3,6 @@ import 'package:civic_24/ui/common/app_text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:stacked/stacked.dart';
-
 import 'custom_rich_text_button_model.dart';
 
 class CustomRichTextButton extends StackedView<CustomRichTextButtonModel> {
@@ -48,7 +47,7 @@ class CustomRichTextButton extends StackedView<CustomRichTextButtonModel> {
             style: buttonStyle ??
                 AppTextStyles.titleRegularSize16.copyWith(
                     fontSize: 14.sp,
-                    color: AppColors.kcPrimary,
+                    color: AppColors.kcPrimary70,
                     fontWeight: FontWeight.w500),
           ),
         ),

@@ -5,9 +5,7 @@ import 'package:civic_24/ui/common/ui_helpers.dart';
 import 'package:civic_24/ui/widgets/common/primary_button/primary_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:stacked/stacked.dart';
-
 import 'success_viewmodel.dart';
 
 class SuccessView extends StackedView<SuccessViewModel> {
@@ -55,22 +53,22 @@ class SuccessView extends StackedView<SuccessViewModel> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          SvgPicture.asset(
-                            AppImages.checkLogo,
-                            height: 100.h,
+                          Image.asset(
+                            AppImages.check,
+                            height: 130.h,
                           ),
                           SizedBox(
-                            height: 24.h,
+                            height: 12.h,
                           ),
                           Text(
                             titleText,
                             style: AppTextStyles.titleRegularSize16.copyWith(
-                              fontSize: 20.sp,
-                              color: AppColors.kcGray0,
-                            ),
+                                fontSize: 20.sp,
+                                color: AppColors.kcGray0,
+                                fontWeight: FontWeight.w600),
                           ),
                           SizedBox(
-                            height: 8.h,
+                            height: 6.h,
                           ),
                           Text(
                             subText,

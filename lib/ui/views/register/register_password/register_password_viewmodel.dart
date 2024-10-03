@@ -23,7 +23,14 @@ class RegisterPasswordViewModel extends FormViewModel
   }
 
   /// Method to route to success view
-  void actionRouteToSuccessView() async {}
+  void actionRouteToSuccessView() {
+    _navigationService.navigateToSuccessView(
+        titleText: "Account Created",
+        subText:
+            "Get ready to explore the amazing features Civic24 has to offer.",
+        buttonLabel: "Proceed",
+        buttonOnTapFunction: () => actionRouteToLoginView());
+  }
 
   /// Method to route to the login view
   void actionRouteToLoginView() {

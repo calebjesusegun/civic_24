@@ -12,7 +12,16 @@ class AppText {
   static String ksPreferredPassword = 'Enter your preferred password';
   static String ksPasswordRequired = 'Password Required';
   static String ksDontHaveAnAccount = "Don’t have an account?";
+  static String ksHello = 'Hi';
+  static String ksReports = 'My Reports';
+  static String ksStatus = 'Status';
+  static String ksWeAreGlad = 'We are glad to have you back here';
   static String ksSignUp = 'SignUp';
   static String ksAlreadyHaveAnAccount = "Already have an account?";
   static String ksLogin = 'Login';
+  static String ksWelcome = 'Welcome';
+  static String ksWelcomeDetails = 'We are glad to have you back';
+  static String ksSuccessTitleText = 'Account Created';
+  static String ksSuccessSubText =
+      'Get ready to explore the amazing features Civic24 has to offer.';
 }

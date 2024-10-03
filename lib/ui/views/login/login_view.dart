@@ -54,7 +54,7 @@ class LoginView extends StackedView<LoginViewModel> with $LoginView {
                   height: 20.h,
                 ),
                 Text(
-                  AppText.ksEmailAddress,
+                  AppText.ksWelcome,
                   style: AppTextStyles.titleRegularSize16.copyWith(
                       fontSize: 19.sp,
                       fontWeight: FontWeight.w500,
@@ -64,7 +64,7 @@ class LoginView extends StackedView<LoginViewModel> with $LoginView {
                   height: 6.h,
                 ),
                 Text(
-                  AppText.ksPreferredEmail,
+                  AppText.ksWelcomeDetails,
                   style: AppTextStyles.titleRegularSize16.copyWith(
                       fontSize: 14.sp,
                       fontWeight: FontWeight.w400,

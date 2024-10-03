@@ -22,6 +22,5 @@ class OnboardingViewModel extends BaseViewModel {
       String response = "true";
       await _secureStorageService.writeFirstTimeUser(firstTimeUser: response);
     }
-    // _secureStorageService
   }
 }
