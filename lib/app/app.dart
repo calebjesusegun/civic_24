@@ -8,6 +8,7 @@ import 'package:civic_24/services/secure_storage_service.dart';
 import 'package:civic_24/ui/views/onboarding/onboarding_view.dart';
 import 'package:civic_24/ui/views/register/register_view.dart';
 import 'package:civic_24/ui/views/register/register_password/register_password_view.dart';
+import 'package:civic_24/services/firebase_service.dart';
 // @stacked-import
 
 @StackedApp(
@@ -24,6 +25,7 @@ import 'package:civic_24/ui/views/register/register_password/register_password_v
     LazySingleton(classType: DialogService),
     LazySingleton(classType: NavigationService),
     LazySingleton(classType: SecureStorageService),
+    LazySingleton(classType: FirebaseService),
 // @stacked-service
   ],
   bottomsheets: [

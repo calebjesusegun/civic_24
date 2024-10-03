@@ -13,6 +13,7 @@ import 'package:flutter/material.dart';
 class AppColors {
   static const kcWhite = Color(0xffFFFFFF);
   static const kcTransparent = Colors.transparent;
+  static const Color textFieldColor = Color(0xffFFFAFB);
 
 //  Primary Color and it's variation
   static const kcPrimary = Color(0xffE41A1A);
@@ -73,6 +74,4 @@ class AppColors {
   static const kcWarning10 = Color(0xffFFD36C);
   static const kcWarning20 = Color(0xffFFE6AA);
   static const kcWarning30 = Color(0xffFFF9E9);
-
-  static const Color textFieldColor = Color(0xffFAF7F8);
 }

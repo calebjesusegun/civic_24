@@ -3,6 +3,7 @@ import 'package:mockito/mockito.dart';
 import 'package:civic_24/app/app.locator.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:civic_24/services/secure_storage_service.dart';
+import 'package:civic_24/services/firebase_service.dart';
 // @stacked-import
 
 import 'test_helpers.mocks.dart';
@@ -12,6 +13,7 @@ import 'test_helpers.mocks.dart';
   MockSpec<BottomSheetService>(onMissingStub: OnMissingStub.returnDefault),
   MockSpec<DialogService>(onMissingStub: OnMissingStub.returnDefault),
   MockSpec<SecureStorageService>(onMissingStub: OnMissingStub.returnDefault),
+  MockSpec<FirebaseService>(onMissingStub: OnMissingStub.returnDefault),
 // @stacked-mock-spec
 ])
 void registerServices() {
@@ -19,6 +21,7 @@ void registerServices() {
   getAndRegisterBottomSheetService();
   getAndRegisterDialogService();
   getAndRegisterSecureStorageService();
+  getAndRegisterFirebaseService();
 // @stacked-mock-register
 }
 
@@ -76,6 +79,13 @@ MockSecureStorageService getAndRegisterSecureStorageService() {
   _removeRegistrationIfExists<SecureStorageService>();
   final service = MockSecureStorageService();
   locator.registerSingleton<SecureStorageService>(service);
+  return service;
+}
+
+MockFirebaseService getAndRegisterFirebaseService() {
+  _removeRegistrationIfExists<FirebaseService>();
+  final service = MockFirebaseService();
+  locator.registerSingleton<FirebaseService>(service);
   return service;
 }
 // @stacked-mock-create

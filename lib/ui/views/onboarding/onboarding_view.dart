@@ -83,7 +83,7 @@ class OnboardingView extends StackedView<OnboardingViewModel> {
         ),
         child: PrimaryButton(
           buttonText: AppText.ksGetStarted,
-          onTap: () => viewModel.actionRouteToOnboardingUsername(),
+          onTap: () => viewModel.actionRouteToRegisterView(),
           isDisabled: false,
           loadingStateStatus: false,
         ),

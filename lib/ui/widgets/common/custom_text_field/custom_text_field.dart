@@ -3,10 +3,12 @@ import 'package:civic_24/ui/common/app_text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:iconsax/iconsax.dart';
 import 'package:stacked/stacked.dart';
 
 import 'custom_text_field_model.dart';
 
+// ignore: must_be_immutable
 class CustomTextField extends StackedView<CustomTextFieldModel> {
   CustomTextField({
     super.key,
@@ -90,6 +92,17 @@ class CustomTextField extends StackedView<CustomTextFieldModel> {
           hintStyle: AppTextStyles.titleRegularSize16
               .copyWith(fontSize: 15.sp, color: AppColors.kcGray30),
           prefix: prefix,
+          suffixIcon: showVisibilityToggle
+              ? InkWell(
+                  onTap: () => viewModel.showText(),
+                  child: Icon(
+                      color: AppColors.kcGray10,
+                      size: 14.w,
+                      viewModel.passwordVisible == true
+                          ? Iconsax.eye
+                          : Iconsax.eye_slash),
+                )
+              : null,
         ),
         validator: validator,
         onChanged: onChanged,

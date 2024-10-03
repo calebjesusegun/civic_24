@@ -86,8 +86,10 @@ class StackedRouter extends _i1.RouterBase {
       );
     },
     _i6.RegisterPasswordView: (data) {
+      final args = data.getArgs<RegisterPasswordViewArguments>(nullOk: false);
       return _i7.MaterialPageRoute<dynamic>(
-        builder: (context) => const _i6.RegisterPasswordView(),
+        builder: (context) => _i6.RegisterPasswordView(
+            emailAddress: args.emailAddress, key: args.key),
         settings: data,
       );
     },
@@ -98,6 +100,33 @@ class StackedRouter extends _i1.RouterBase {
 
   @override
   Map<Type, _i1.StackedRouteFactory> get pagesMap => _pagesMap;
+}
+
+class RegisterPasswordViewArguments {
+  const RegisterPasswordViewArguments({
+    required this.emailAddress,
+    this.key,
+  });
+
+  final String emailAddress;
+
+  final _i7.Key? key;
+
+  @override
+  String toString() {
+    return '{"emailAddress": "$emailAddress", "key": "$key"}';
+  }
+
+  @override
+  bool operator ==(covariant RegisterPasswordViewArguments other) {
+    if (identical(this, other)) return true;
+    return other.emailAddress == emailAddress && other.key == key;
+  }
+
+  @override
+  int get hashCode {
+    return emailAddress.hashCode ^ key.hashCode;
+  }
 }
 
 extension NavigatorStateExtension on _i8.NavigationService {
@@ -157,14 +186,18 @@ extension NavigatorStateExtension on _i8.NavigationService {
         transition: transition);
   }
 
-  Future<dynamic> navigateToRegisterPasswordView([
+  Future<dynamic> navigateToRegisterPasswordView({
+    required String emailAddress,
+    _i7.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
         transition,
-  ]) async {
+  }) async {
     return navigateTo<dynamic>(Routes.registerPasswordView,
+        arguments:
+            RegisterPasswordViewArguments(emailAddress: emailAddress, key: key),
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,
@@ -227,14 +260,18 @@ extension NavigatorStateExtension on _i8.NavigationService {
         transition: transition);
   }
 
-  Future<dynamic> replaceWithRegisterPasswordView([
+  Future<dynamic> replaceWithRegisterPasswordView({
+    required String emailAddress,
+    _i7.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
         transition,
-  ]) async {
+  }) async {
     return replaceWith<dynamic>(Routes.registerPasswordView,
+        arguments:
+            RegisterPasswordViewArguments(emailAddress: emailAddress, key: key),
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,

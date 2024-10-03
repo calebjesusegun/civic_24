@@ -1,7 +1,6 @@
 import 'package:civic_24/app/app.bottomsheets.dart';
 import 'package:civic_24/app/app.dialogs.dart';
 import 'package:civic_24/app/app.locator.dart';
-import 'package:civic_24/ui/common/app_strings.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 

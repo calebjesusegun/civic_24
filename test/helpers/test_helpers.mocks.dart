@@ -6,6 +6,7 @@
 import 'dart:async' as _i5;
 import 'dart:ui' as _i6;
 
+import 'package:civic_24/services/firebase_service.dart' as _i8;
 import 'package:civic_24/services/secure_storage_service.dart' as _i7;
 import 'package:flutter/material.dart' as _i4;
 import 'package:mockito/mockito.dart' as _i1;
@@ -740,3 +741,8 @@ class MockSecureStorageService extends _i1.Mock
         returnValueForMissingStub: _i5.Future<void>.value(),
       ) as _i5.Future<void>);
 }
+
+/// A class which mocks [FirebaseService].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockFirebaseService extends _i1.Mock implements _i8.FirebaseService {}
