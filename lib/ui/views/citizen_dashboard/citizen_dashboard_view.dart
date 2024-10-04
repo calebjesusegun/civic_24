@@ -131,15 +131,41 @@ class CitizenDashboardView extends StackedView<CitizenDashboardViewModel> {
                           ),
                           tabs: [
                             Tab(
-                              child: Text(
-                                AppText.ksReports,
-                                textAlign: TextAlign.center,
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  // SvgPicture.asset(
+                                  //   AppImages.home,
+                                  //   width: 17.w,
+                                  // ),
+                                  // SizedBox(
+                                  //   width: 6.w,
+                                  // ),
+                                  Text(
+                                    AppText.ksReports,
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ],
                               ),
                             ),
                             Tab(
-                              child: Text(
-                                AppText.ksStatus,
-                                textAlign: TextAlign.center,
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  // SvgPicture.asset(
+                                  //   AppImages.status,
+                                  //   width: 17.w,
+                                  // ),
+                                  // SizedBox(
+                                  //   width: 2.w,
+                                  // ),
+                                  Text(
+                                    AppText.ksStatus,
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ],
                               ),
                             ),
                           ],

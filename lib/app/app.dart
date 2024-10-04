@@ -11,6 +11,9 @@ import 'package:civic_24/services/firebase_service.dart';
 import 'package:civic_24/ui/views/login/login_view.dart';
 import 'package:civic_24/ui/views/success/success_view.dart';
 import 'package:civic_24/ui/views/citizen_dashboard/citizen_dashboard_view.dart';
+import 'package:civic_24/ui/views/report/report_view.dart';
+import 'package:civic_24/ui/views/report/report_upload_image/report_upload_image_view.dart';
+import 'package:civic_24/ui/views/report/report_update_contact_details/report_update_contact_details_view.dart';
 // @stacked-import
 
 @StackedApp(
@@ -22,6 +25,9 @@ import 'package:civic_24/ui/views/citizen_dashboard/citizen_dashboard_view.dart'
     MaterialRoute(page: LoginView),
     MaterialRoute(page: SuccessView),
     MaterialRoute(page: CitizenDashboardView),
+    MaterialRoute(page: ReportView),
+    MaterialRoute(page: ReportUploadImageView),
+    MaterialRoute(page: ReportUpdateContactDetailsView),
 // @stacked-route
   ],
   dependencies: [

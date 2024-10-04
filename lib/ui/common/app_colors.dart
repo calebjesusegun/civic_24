@@ -15,6 +15,7 @@ class AppColors {
   static const kcTransparent = Colors.transparent;
   static const textFieldColor = Color(0xffFFFAFB);
   static const kcReportBorder = Color(0xFFD1D8E1);
+  static const ksLinearIndicatorInActiveColor = Color(0xFFD9D9D9);
 
 //  Primary Color and it's variation
   // static const kcPrimary = Color(0xffE41A1A);

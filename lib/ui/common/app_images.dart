@@ -6,6 +6,9 @@ class AppImages {
   static String blob2 = 'assets/svg/blob2.svg';
   static String checkLogo = 'assets/svg/check.svg';
   static String check = 'assets/images/check.png';
+  static String uploadImage = 'assets/svg/uploadImage.svg';
+  static String home = 'assets/svg/home.svg';
+  static String status = 'assets/svg/status.svg';
   static String onboarding1 = 'assets/svg/onboarding1.svg';
   static String onboarding2 = 'assets/svg/onboarding2.svg';
   static String backButton = 'assets/svg/backButton.svg';

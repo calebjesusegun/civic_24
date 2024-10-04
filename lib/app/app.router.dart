@@ -12,12 +12,17 @@ import 'package:civic_24/ui/views/onboarding/onboarding_view.dart' as _i3;
 import 'package:civic_24/ui/views/register/register_password/register_password_view.dart'
     as _i5;
 import 'package:civic_24/ui/views/register/register_view.dart' as _i4;
+import 'package:civic_24/ui/views/report/report_update_contact_details/report_update_contact_details_view.dart'
+    as _i11;
+import 'package:civic_24/ui/views/report/report_upload_image/report_upload_image_view.dart'
+    as _i10;
+import 'package:civic_24/ui/views/report/report_view.dart' as _i9;
 import 'package:civic_24/ui/views/startup/startup_view.dart' as _i2;
 import 'package:civic_24/ui/views/success/success_view.dart' as _i7;
-import 'package:flutter/material.dart' as _i9;
+import 'package:flutter/material.dart' as _i12;
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart' as _i1;
-import 'package:stacked_services/stacked_services.dart' as _i10;
+import 'package:stacked_services/stacked_services.dart' as _i13;
 
 class Routes {
   static const startupView = '/startup-view';
@@ -34,6 +39,13 @@ class Routes {
 
   static const citizenDashboardView = '/citizen-dashboard-view';
 
+  static const reportView = '/report-view';
+
+  static const reportUploadImageView = '/report-upload-image-view';
+
+  static const reportUpdateContactDetailsView =
+      '/report-update-contact-details-view';
+
   static const all = <String>{
     startupView,
     onboardingView,
@@ -42,6 +54,9 @@ class Routes {
     loginView,
     successView,
     citizenDashboardView,
+    reportView,
+    reportUploadImageView,
+    reportUpdateContactDetailsView,
   };
 }
 
@@ -75,44 +90,56 @@ class StackedRouter extends _i1.RouterBase {
       Routes.citizenDashboardView,
       page: _i8.CitizenDashboardView,
     ),
+    _i1.RouteDef(
+      Routes.reportView,
+      page: _i9.ReportView,
+    ),
+    _i1.RouteDef(
+      Routes.reportUploadImageView,
+      page: _i10.ReportUploadImageView,
+    ),
+    _i1.RouteDef(
+      Routes.reportUpdateContactDetailsView,
+      page: _i11.ReportUpdateContactDetailsView,
+    ),
   ];
 
   final _pagesMap = <Type, _i1.StackedRouteFactory>{
     _i2.StartupView: (data) {
-      return _i9.MaterialPageRoute<dynamic>(
+      return _i12.MaterialPageRoute<dynamic>(
         builder: (context) => const _i2.StartupView(),
         settings: data,
       );
     },
     _i3.OnboardingView: (data) {
-      return _i9.MaterialPageRoute<dynamic>(
+      return _i12.MaterialPageRoute<dynamic>(
         builder: (context) => const _i3.OnboardingView(),
         settings: data,
       );
     },
     _i4.RegisterView: (data) {
-      return _i9.MaterialPageRoute<dynamic>(
+      return _i12.MaterialPageRoute<dynamic>(
         builder: (context) => const _i4.RegisterView(),
         settings: data,
       );
     },
     _i5.RegisterPasswordView: (data) {
       final args = data.getArgs<RegisterPasswordViewArguments>(nullOk: false);
-      return _i9.MaterialPageRoute<dynamic>(
+      return _i12.MaterialPageRoute<dynamic>(
         builder: (context) => _i5.RegisterPasswordView(
             emailAddress: args.emailAddress, key: args.key),
         settings: data,
       );
     },
     _i6.LoginView: (data) {
-      return _i9.MaterialPageRoute<dynamic>(
+      return _i12.MaterialPageRoute<dynamic>(
         builder: (context) => const _i6.LoginView(),
         settings: data,
       );
     },
     _i7.SuccessView: (data) {
       final args = data.getArgs<SuccessViewArguments>(nullOk: false);
-      return _i9.MaterialPageRoute<dynamic>(
+      return _i12.MaterialPageRoute<dynamic>(
         builder: (context) => _i7.SuccessView(
             titleText: args.titleText,
             subText: args.subText,
@@ -124,8 +151,28 @@ class StackedRouter extends _i1.RouterBase {
       );
     },
     _i8.CitizenDashboardView: (data) {
-      return _i9.MaterialPageRoute<dynamic>(
+      return _i12.MaterialPageRoute<dynamic>(
         builder: (context) => const _i8.CitizenDashboardView(),
+        settings: data,
+      );
+    },
+    _i9.ReportView: (data) {
+      return _i12.MaterialPageRoute<dynamic>(
+        builder: (context) => const _i9.ReportView(),
+        settings: data,
+      );
+    },
+    _i10.ReportUploadImageView: (data) {
+      final args = data.getArgs<ReportUploadImageViewArguments>(nullOk: false);
+      return _i12.MaterialPageRoute<dynamic>(
+        builder: (context) => _i10.ReportUploadImageView(
+            reportReason: args.reportReason, key: args.key),
+        settings: data,
+      );
+    },
+    _i11.ReportUpdateContactDetailsView: (data) {
+      return _i12.MaterialPageRoute<dynamic>(
+        builder: (context) => const _i11.ReportUpdateContactDetailsView(),
         settings: data,
       );
     },
@@ -146,7 +193,7 @@ class RegisterPasswordViewArguments {
 
   final String emailAddress;
 
-  final _i9.Key? key;
+  final _i12.Key? key;
 
   @override
   String toString() {
@@ -185,7 +232,7 @@ class SuccessViewArguments {
 
   final void Function() buttonOnTapFunction;
 
-  final _i9.Key? key;
+  final _i12.Key? key;
 
   @override
   String toString() {
@@ -214,7 +261,34 @@ class SuccessViewArguments {
   }
 }
 
-extension NavigatorStateExtension on _i10.NavigationService {
+class ReportUploadImageViewArguments {
+  const ReportUploadImageViewArguments({
+    required this.reportReason,
+    this.key,
+  });
+
+  final String reportReason;
+
+  final _i12.Key? key;
+
+  @override
+  String toString() {
+    return '{"reportReason": "$reportReason", "key": "$key"}';
+  }
+
+  @override
+  bool operator ==(covariant ReportUploadImageViewArguments other) {
+    if (identical(this, other)) return true;
+    return other.reportReason == reportReason && other.key == key;
+  }
+
+  @override
+  int get hashCode {
+    return reportReason.hashCode ^ key.hashCode;
+  }
+}
+
+extension NavigatorStateExtension on _i13.NavigationService {
   Future<dynamic> navigateToStartupView([
     int? routerId,
     bool preventDuplicates = true,
@@ -259,7 +333,7 @@ extension NavigatorStateExtension on _i10.NavigationService {
 
   Future<dynamic> navigateToRegisterPasswordView({
     required String emailAddress,
-    _i9.Key? key,
+    _i12.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -295,7 +369,7 @@ extension NavigatorStateExtension on _i10.NavigationService {
     required String buttonLabel,
     void Function()? outlineButtonOnTapFunction,
     required void Function() buttonOnTapFunction,
-    _i9.Key? key,
+    _i12.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -324,6 +398,52 @@ extension NavigatorStateExtension on _i10.NavigationService {
         transition,
   ]) async {
     return navigateTo<dynamic>(Routes.citizenDashboardView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> navigateToReportView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return navigateTo<dynamic>(Routes.reportView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> navigateToReportUploadImageView({
+    required String reportReason,
+    _i12.Key? key,
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  }) async {
+    return navigateTo<dynamic>(Routes.reportUploadImageView,
+        arguments: ReportUploadImageViewArguments(
+            reportReason: reportReason, key: key),
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> navigateToReportUpdateContactDetailsView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return navigateTo<dynamic>(Routes.reportUpdateContactDetailsView,
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,
@@ -374,7 +494,7 @@ extension NavigatorStateExtension on _i10.NavigationService {
 
   Future<dynamic> replaceWithRegisterPasswordView({
     required String emailAddress,
-    _i9.Key? key,
+    _i12.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -410,7 +530,7 @@ extension NavigatorStateExtension on _i10.NavigationService {
     required String buttonLabel,
     void Function()? outlineButtonOnTapFunction,
     required void Function() buttonOnTapFunction,
-    _i9.Key? key,
+    _i12.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -439,6 +559,52 @@ extension NavigatorStateExtension on _i10.NavigationService {
         transition,
   ]) async {
     return replaceWith<dynamic>(Routes.citizenDashboardView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> replaceWithReportView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return replaceWith<dynamic>(Routes.reportView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> replaceWithReportUploadImageView({
+    required String reportReason,
+    _i12.Key? key,
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  }) async {
+    return replaceWith<dynamic>(Routes.reportUploadImageView,
+        arguments: ReportUploadImageViewArguments(
+            reportReason: reportReason, key: key),
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> replaceWithReportUpdateContactDetailsView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return replaceWith<dynamic>(Routes.reportUpdateContactDetailsView,
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,

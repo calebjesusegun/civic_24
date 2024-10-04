@@ -1,5 +1,6 @@
 import 'package:civic_24/app/app.locator.dart';
 import 'package:civic_24/app/app.logger.dart';
+import 'package:civic_24/app/app.router.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -13,6 +14,7 @@ class CitizenDashboardViewModel extends BaseViewModel {
 
   /// Method to route to the report view
   void actionRouteToReportView() {
-    // _navigationService.navigateToRegisterView();
+    _navigationService.navigateToReportView();
+    _logger.i("Report Reason");
   }
 }
