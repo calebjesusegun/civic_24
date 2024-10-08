@@ -19,8 +19,11 @@ class NoDataFound extends StackedView<NoDataFoundModel> {
   ) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
-      mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.start,
       children: [
+        SizedBox(
+          height: 80.h,
+        ),
         Lottie.asset(
           "assets/lottie/no-transactions.json",
           width: 130,

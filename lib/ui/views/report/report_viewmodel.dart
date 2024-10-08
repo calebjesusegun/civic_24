@@ -21,7 +21,7 @@ class ReportViewModel extends BaseViewModel {
 
   void onTapReportIssue(String issue) {
     if (!selectedReportedIssue!.contains(issue)) {
-      if (selectedReportedIssue!.length < 2) {
+      if (selectedReportedIssue!.isEmpty) {
         selectedReportedIssue!.add(issue);
         rebuildUi();
         _logger.i(selectedReportedIssue);
@@ -40,7 +40,8 @@ class ReportViewModel extends BaseViewModel {
 
   /// Method to route to the report upload image details view
   void actionRouteToReportUploadImageView() async {
-    _navigationService.navigateToReportUploadImageView(reportReason: "");
-    _logger.i("Report Reason");
+    _navigationService.navigateToReportUploadImageView(
+        reportReason: selectedReportedIssue!.first);
+    _logger.i("Report Reason: ${selectedReportedIssue!.first}");
   }
 }

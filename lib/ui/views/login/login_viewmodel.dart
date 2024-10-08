@@ -2,6 +2,7 @@ import 'package:civic_24/app/app.locator.dart';
 import 'package:civic_24/app/app.logger.dart';
 import 'package:civic_24/app/app.router.dart';
 import 'package:civic_24/services/firebase_service.dart';
+import 'package:civic_24/ui/common/app_colors.dart';
 import 'package:civic_24/ui/common/toast.dart';
 import 'package:civic_24/ui/views/login/login_view.form.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -37,10 +38,7 @@ class LoginViewModel extends FormViewModel with $LoginView {
         await _firebaseService.signInWithEmailAndPassword(email, password);
     updateLoadingState(false);
     if (user != null) {
-      showToast(message: "User successfully Signed In");
       actionRouteToHomeView();
-    } else {
-      showToast(message: "An unexpected error occured");
     }
   }
 

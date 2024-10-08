@@ -2,6 +2,7 @@ import 'package:civic_24/app/app.locator.dart';
 import 'package:civic_24/app/app.logger.dart';
 import 'package:civic_24/app/app.router.dart';
 import 'package:civic_24/services/firebase_service.dart';
+import 'package:civic_24/ui/common/app_colors.dart';
 import 'package:civic_24/ui/common/toast.dart';
 import 'package:civic_24/ui/views/register/register_password/register_password_view.form.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -37,10 +38,7 @@ class RegisterPasswordViewModel extends FormViewModel
         await _firebaseService.signUpWithEmailAndPassword(email, password);
     updateLoadingState(false);
     if (user != null) {
-      showToast(message: "User successfully Created");
       actionRouteToSuccessView();
-    } else {
-      showToast(message: "An unexpected error occured... Kindly try again");
     }
   }
 
@@ -56,6 +54,6 @@ class RegisterPasswordViewModel extends FormViewModel
 
   /// Method to route to the login view
   void actionRouteToLoginView() {
-    _navigationService.navigateToLoginView();
+    _navigationService.clearStackAndShow(Routes.loginView);
   }
 }

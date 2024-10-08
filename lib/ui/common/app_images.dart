@@ -12,6 +12,5 @@ class AppImages {
   static String onboarding1 = 'assets/svg/onboarding1.svg';
   static String onboarding2 = 'assets/svg/onboarding2.svg';
   static String backButton = 'assets/svg/backButton.svg';
-  static String buttonLoadingWhiteState =
-      'assets/svg/buttonLoadingWhiteState.svg';
+  static String buttonLoadingWhiteState = 'assets/lottie/loading_white.json';
 }

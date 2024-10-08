@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:civic_24/models/report_model.dart';
+import 'package:civic_24/ui/common/app_colors.dart';
 import 'package:civic_24/ui/common/toast.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -19,9 +20,12 @@ class FirebaseService {
       return credential.user;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'email-already-in-use') {
-        showToast(message: 'The email address is already in use.');
+        showToast(
+            message: 'The email address is already in use.',
+            color: AppColors.kcFail);
       } else {
-        showToast(message: 'An error occurred: ${e.code}');
+        showToast(
+            message: 'An error occurred: ${e.code}', color: AppColors.kcFail);
       }
     }
     return null;
@@ -35,9 +39,11 @@ class FirebaseService {
       return credential.user;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found' || e.code == 'wrong-password') {
-        showToast(message: 'Invalid email or password.');
+        showToast(
+            message: 'Invalid email or password.', color: AppColors.kcFail);
       } else {
-        showToast(message: 'An error occurred: ${e.code}');
+        showToast(
+            message: 'An error occurred: ${e.code}', color: AppColors.kcFail);
       }
     }
     return null;
@@ -47,7 +53,8 @@ class FirebaseService {
     try {
       await _auth.signOut();
     } on FirebaseAuthException catch (e) {
-      showToast(message: 'An error occurred: ${e.code}');
+      showToast(
+          message: 'An error occurred: ${e.code}', color: AppColors.kcFail);
     }
     return null;
   }
@@ -59,8 +66,10 @@ class FirebaseService {
       await storageRef.putFile(imageFile);
       final url = await storageRef.getDownloadURL();
       return url;
-    } on FirebaseAuthException catch (e) {
-      showToast(message: 'An unexpected error occured... Kindly try again');
+    } on FirebaseException {
+      showToast(
+          message: 'An unexpected error occured... Kindly try again',
+          color: AppColors.kcFail);
     }
     return "";
   }
@@ -78,21 +87,27 @@ class FirebaseService {
   }
 
   void createReport(ReportModel reportModel) {
-    final reportCollection = _firebaseFirestore.collection("reports");
+    try {
+      final reportCollection = _firebaseFirestore.collection("reports");
 
-    String id = reportCollection.doc().id;
+      String id = reportCollection.doc().id;
 
-    final newReport = ReportModel(
-      reportReason: reportModel.reportReason,
-      imageUrl: reportModel.imageUrl,
-      contactNumber: reportModel.contactNumber,
-      location: reportModel.location,
-      address: reportModel.address,
-      status: reportModel.status,
-      contactEmail: reportModel.contactEmail,
-      id: id,
-    ).toJson();
+      final newReport = ReportModel(
+        reportReason: reportModel.reportReason,
+        imageUrl: reportModel.imageUrl,
+        contactNumber: reportModel.contactNumber,
+        location: reportModel.location,
+        address: reportModel.address,
+        status: reportModel.status,
+        contactEmail: reportModel.contactEmail,
+        id: id,
+      ).toJson();
 
-    reportCollection.doc(id).set(newReport);
+      reportCollection.doc(id).set(newReport);
+    } on FirebaseException {
+      showToast(
+          message: 'An unexpected error occured... Kindly try again',
+          color: AppColors.kcFail);
+    }
   }
 }

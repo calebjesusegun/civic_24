@@ -80,7 +80,10 @@ class PrimaryButton extends StackedView<PrimaryButtonModel> {
               if (loadingStateStatus) ...[
                 SizedBox(
                   width: 25.w,
-                  child: Lottie.asset(AppImages.buttonLoadingWhiteState),
+                  child: Lottie.asset(
+                    "assets/lottie/loading_white.json",
+                    alignment: Alignment.center,
+                  ),
                 ),
               ],
             ],

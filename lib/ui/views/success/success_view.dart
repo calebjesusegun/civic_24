@@ -32,7 +32,7 @@ class SuccessView extends StackedView<SuccessViewModel> {
     return PopScope(
       canPop: false,
       child: Scaffold(
-        backgroundColor: Theme.of(context).colorScheme.surface,
+        backgroundColor: AppColors.kcWhite,
         body: SafeArea(
           child: SizedBox(
             height: screenHeight(context).h,

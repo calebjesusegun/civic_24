@@ -70,8 +70,10 @@ class SingleReport extends StackedView<SingleReportModel> {
             child: ClipRRect(
               borderRadius: BorderRadius.circular(6.0.r),
               child: CachedNetworkImage(
-                alignment: Alignment.center,
+                alignment: Alignment.topCenter,
                 imageUrl: imageUrl,
+                height: 180.h,
+                width: screenWidth(context).w,
                 fit: BoxFit.fitWidth,
                 placeholder: (context, url) => Shimmer.fromColors(
                   baseColor: (Colors.grey[300])!,
@@ -79,7 +81,7 @@ class SingleReport extends StackedView<SingleReportModel> {
                   enabled: true,
                   child: Container(
                     width: screenWidth(context).w,
-                    height: 180.h,
+                    height: 80.h,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(6.r),
                       color: Colors.white,
@@ -92,7 +94,7 @@ class SingleReport extends StackedView<SingleReportModel> {
             ),
           ),
           SizedBox(
-            height: 16.h,
+            height: 24.h,
           ),
           ApplicationSection(
             headerText: 'ADDRESS',

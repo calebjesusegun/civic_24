@@ -3,9 +3,9 @@ import 'package:civic_24/app/app.logger.dart';
 import 'package:civic_24/app/app.router.dart';
 import 'package:civic_24/models/report_model.dart';
 import 'package:civic_24/services/firebase_service.dart';
+import 'package:civic_24/ui/common/app_colors.dart';
 import 'package:civic_24/ui/common/toast.dart';
 import 'package:civic_24/ui/views/report/report_update_contact_details/report_update_contact_details_view.form.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -53,9 +53,13 @@ class ReportUpdateContactDetailsViewModel extends FormViewModel
       _firebaseService.createReport(reportModel);
       updateLoadingState(false);
 
-      actionRouteToSuccessView();
+      _logger.i("Success");
+
+      // actionRouteToSuccessView();
     } on Exception {
-      showToast(message: 'An unexpected error occured... Kindly try again');
+      showToast(
+          message: 'An unexpected error occured... Kindly try again',
+          color: AppColors.kcFail);
     }
   }
 

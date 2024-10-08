@@ -160,45 +160,45 @@ class CitizenDashboardView extends StackedView<CitizenDashboardViewModel> {
                       ),
                     ),
 
-                    /// TabBar Children View
-                    Container(
-                      padding: EdgeInsets.only(
-                        top: 12.h,
-                      ),
-                      child: SizedBox(
-                        height: MediaQuery.of(context).size.height.h,
-                        child: TabBarView(
-                          physics: const BouncingScrollPhysics(),
-                          children: <Widget>[
-                            /// My Reports Section
+                    SizedBox(
+                      height: 12.h,
+                    ),
 
-                            Padding(
-                              padding: EdgeInsets.symmetric(
-                                horizontal: sidePadding,
-                              ),
-                              child: StreamBuilder<List<ReportModel>>(
-                                  stream: viewModel.getUserReports(),
-                                  builder: (context, snapshot) {
-                                    if (snapshot.connectionState ==
-                                        ConnectionState.waiting) {
-                                      return const Center(
-                                        child: CircularProgressIndicator(
-                                          color: AppColors.kcPrimary70,
-                                        ),
-                                      );
-                                    }
-                                    if (snapshot.data!.isEmpty) {
-                                      return const NoDataFound(
-                                        text:
-                                            "You have no reported issues. Click on the Add Icon to create a report",
-                                      );
-                                    }
-                                    final reports = snapshot.data;
-                                    return Padding(
-                                      padding: EdgeInsets.symmetric(
-                                          horizontal: sidePadding),
-                                      child: Column(
-                                          children: reports!.map((report) {
+                    /// TabBar Children View
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height.h,
+                      child: TabBarView(
+                        physics: const BouncingScrollPhysics(),
+                        children: <Widget>[
+                          /// My Reports Section
+
+                          Padding(
+                            padding: EdgeInsets.symmetric(
+                              horizontal: sidePadding,
+                            ),
+                            child: StreamBuilder<List<ReportModel>>(
+                                stream: viewModel.getUserReports(),
+                                builder: (context, snapshot) {
+                                  if (snapshot.connectionState ==
+                                      ConnectionState.waiting) {
+                                    return const Center(
+                                      child: CircularProgressIndicator(
+                                        color: AppColors.kcPrimary70,
+                                      ),
+                                    );
+                                  }
+                                  if (snapshot.data!.isEmpty) {
+                                    return const NoDataFound(
+                                      text:
+                                          "You have no reported issues. Click on the Add Icon to create a report",
+                                    );
+                                  }
+                                  final reports = snapshot.data;
+                                  return Padding(
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: sidePadding),
+                                    child: Column(
+                                      children: reports!.map((report) {
                                         return SingleReport(
                                           reportTitle: report.reportReason!,
                                           imageUrl: report.imageUrl!,
@@ -211,53 +211,20 @@ class CitizenDashboardView extends StackedView<CitizenDashboardViewModel> {
                                               AppColors.kcGray90,
                                           linkStatusColor: AppColors.kcGray0,
                                         );
-                                      }).toList()),
-                                    );
-                                  }),
-                            ),
+                                      }).toList(),
+                                    ),
+                                  );
+                                }),
+                          ),
 
-                            // Padding(
-                            //   padding: EdgeInsets.symmetric(
-                            //     horizontal: sidePadding,
-                            //   ),
-                            //   child: SingleChildScrollView(
-                            //     child: Column(
-                            //       mainAxisAlignment: MainAxisAlignment.start,
-                            //       crossAxisAlignment: CrossAxisAlignment.start,
-                            //       children: [
-                            //         const SingleReport(
-                            //           reportTitle: 'reportTitle',
-                            //           imageUrl: '',
-                            //           reportStatus: 'reportStatus',
-                            //           address: 'address',
-                            //           contactEmail: 'contactEmail',
-                            //           contactNumber: 'contactNumber',
-                            //           location: 'location',
-                            //           linkStatusBackgroundColor:
-                            //               AppColors.kcGray90,
-                            //           linkStatusColor: AppColors.kcGray0,
-                            //         ),
-                            //         SizedBox(
-                            //           height: 16.h,
-                            //         ),
-                            //         const NoDataFound(
-                            //           text:
-                            //               "You have no reported issues. Click on the Add Icon to created a report",
-                            //         ),
-                            //       ],
-                            //     ),
-                            //   ),
-                            // ),
-
-                            /// Status Section
-                            Padding(
-                              padding: EdgeInsets.symmetric(
-                                horizontal: sidePadding,
-                              ),
-                              child: Text(AppText.ksStatus),
+                          /// Status Section
+                          Padding(
+                            padding: EdgeInsets.symmetric(
+                              horizontal: sidePadding,
                             ),
-                          ],
-                        ),
+                            child: Text(AppText.ksStatus),
+                          ),
+                        ],
                       ),
                     ),
                   ],

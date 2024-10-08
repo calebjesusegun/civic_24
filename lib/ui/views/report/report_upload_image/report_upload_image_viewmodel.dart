@@ -3,7 +3,6 @@ import 'package:civic_24/app/app.locator.dart';
 import 'package:civic_24/app/app.logger.dart';
 import 'package:civic_24/app/app.router.dart';
 import 'package:civic_24/services/firebase_service.dart';
-import 'package:civic_24/ui/common/toast.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/services.dart';
 import 'package:stacked/stacked.dart';
@@ -64,16 +63,9 @@ class ReportUploadImageViewModel extends BaseViewModel {
   Uint8List imageUint8List = Uint8List(0);
 
   /// Method to initiate the setBusy State
-  void initiateLoading(bool value) {
-    _loadingStateStatus = value;
+  updateLoadingState(bool status) {
+    _loadingStateStatus = status;
     rebuildUi();
-  }
-
-  /// Method that implements loading animation state for the view once the viewModel is busy
-  @override
-  void setBusyForObject(Object? object, bool value) {
-    initiateLoading(value);
-    super.setBusyForObject(object, value);
   }
 
   /// Method to select a food image from the device Photo Library
@@ -97,14 +89,16 @@ class ReportUploadImageViewModel extends BaseViewModel {
 
   /// Method to route to the report update contact details view
   void actionRouteToReportUpdateContactDetailsView(String reportReason) async {
+    updateLoadingState(true);
     String imageUrl = await _firebaseService.uploadImage(
         fileName: _fileName, imageFile: _file);
+
+    updateLoadingState(false);
 
     if (imageUrl.isNotEmpty) {
       _navigationService.navigateToReportUpdateContactDetailsView(
           reportReason: reportReason, imageUrl: imageUrl);
-    } else {
-      showToast(message: "An unexpected error occured... Kindly try again");
+      _logger.i("ImageUrl: $imageUrl");
     }
   }
 }
