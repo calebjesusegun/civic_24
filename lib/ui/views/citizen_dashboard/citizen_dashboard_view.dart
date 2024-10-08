@@ -1,3 +1,4 @@
+import 'package:civic_24/models/report_model.dart';
 import 'package:civic_24/ui/common/app_colors.dart';
 import 'package:civic_24/ui/common/app_images.dart';
 import 'package:civic_24/ui/common/app_strings.dart';
@@ -135,13 +136,6 @@ class CitizenDashboardView extends StackedView<CitizenDashboardViewModel> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
-                                  // SvgPicture.asset(
-                                  //   AppImages.home,
-                                  //   width: 17.w,
-                                  // ),
-                                  // SizedBox(
-                                  //   width: 6.w,
-                                  // ),
                                   Text(
                                     AppText.ksReports,
                                     textAlign: TextAlign.center,
@@ -154,13 +148,6 @@ class CitizenDashboardView extends StackedView<CitizenDashboardViewModel> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
-                                  // SvgPicture.asset(
-                                  //   AppImages.status,
-                                  //   width: 17.w,
-                                  // ),
-                                  // SizedBox(
-                                  //   width: 2.w,
-                                  // ),
                                   Text(
                                     AppText.ksStatus,
                                     textAlign: TextAlign.center,
@@ -184,39 +171,83 @@ class CitizenDashboardView extends StackedView<CitizenDashboardViewModel> {
                           physics: const BouncingScrollPhysics(),
                           children: <Widget>[
                             /// My Reports Section
+
                             Padding(
                               padding: EdgeInsets.symmetric(
                                 horizontal: sidePadding,
                               ),
-                              child: SingleChildScrollView(
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    const SingleReport(
-                                      reportTitle: 'reportTitle',
-                                      imageUrl: '',
-                                      reportStatus: 'reportStatus',
-                                      address: 'address',
-                                      contactEmail: 'contactEmail',
-                                      contactNumber: 'contactNumber',
-                                      location: 'location',
-                                      linkStatus: 'linkStatus',
-                                      linkStatusBackgroundColor:
-                                          AppColors.kcGray90,
-                                      linkStatusColor: AppColors.kcGray0,
-                                    ),
-                                    SizedBox(
-                                      height: 16.h,
-                                    ),
-                                    const NoDataFound(
-                                      text:
-                                          "You have no reported issues. Click on the Add Icon to created a report",
-                                    ),
-                                  ],
-                                ),
-                              ),
+                              child: StreamBuilder<List<ReportModel>>(
+                                  stream: viewModel.getUserReports(),
+                                  builder: (context, snapshot) {
+                                    if (snapshot.connectionState ==
+                                        ConnectionState.waiting) {
+                                      return const Center(
+                                        child: CircularProgressIndicator(
+                                          color: AppColors.kcPrimary70,
+                                        ),
+                                      );
+                                    }
+                                    if (snapshot.data!.isEmpty) {
+                                      return const NoDataFound(
+                                        text:
+                                            "You have no reported issues. Click on the Add Icon to create a report",
+                                      );
+                                    }
+                                    final reports = snapshot.data;
+                                    return Padding(
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: sidePadding),
+                                      child: Column(
+                                          children: reports!.map((report) {
+                                        return SingleReport(
+                                          reportTitle: report.reportReason!,
+                                          imageUrl: report.imageUrl!,
+                                          reportStatus: report.status!,
+                                          address: report.address!,
+                                          contactEmail: report.contactEmail!,
+                                          contactNumber: report.contactNumber!,
+                                          location: report.location!,
+                                          linkStatusBackgroundColor:
+                                              AppColors.kcGray90,
+                                          linkStatusColor: AppColors.kcGray0,
+                                        );
+                                      }).toList()),
+                                    );
+                                  }),
                             ),
+
+                            // Padding(
+                            //   padding: EdgeInsets.symmetric(
+                            //     horizontal: sidePadding,
+                            //   ),
+                            //   child: SingleChildScrollView(
+                            //     child: Column(
+                            //       mainAxisAlignment: MainAxisAlignment.start,
+                            //       crossAxisAlignment: CrossAxisAlignment.start,
+                            //       children: [
+                            //         const SingleReport(
+                            //           reportTitle: 'reportTitle',
+                            //           imageUrl: '',
+                            //           reportStatus: 'reportStatus',
+                            //           address: 'address',
+                            //           contactEmail: 'contactEmail',
+                            //           contactNumber: 'contactNumber',
+                            //           location: 'location',
+                            //           linkStatusBackgroundColor:
+                            //               AppColors.kcGray90,
+                            //           linkStatusColor: AppColors.kcGray0,
+                            //         ),
+                            //         SizedBox(
+                            //           height: 16.h,
+                            //         ),
+                            //         const NoDataFound(
+                            //           text:
+                            //               "You have no reported issues. Click on the Add Icon to created a report",
+                            //         ),
+                            //       ],
+                            //     ),
+                            //   ),
+                            // ),
 
                             /// Status Section
                             Padding(

@@ -1,16 +1,19 @@
 import 'dart:io';
-
 import 'package:civic_24/app/app.locator.dart';
 import 'package:civic_24/app/app.logger.dart';
 import 'package:civic_24/app/app.router.dart';
+import 'package:civic_24/services/firebase_service.dart';
+import 'package:civic_24/ui/common/toast.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/services.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
+import 'package:path/path.dart' as path;
 
 class ReportUploadImageViewModel extends BaseViewModel {
   /// Initializing the required Services and Dependencies
   final _navigationService = locator<NavigationService>();
+  final _firebaseService = locator<FirebaseService>();
   final _logger = getLogger('ReportUploadImageViewModel');
 
   /// Method to route Back to previous View
@@ -55,9 +58,10 @@ class ReportUploadImageViewModel extends BaseViewModel {
   /// Variable to store the selected File image
   File _file = File('');
   File get file => _file;
+  String _fileName = "";
 
   /// Variable to store the the selected image Uint8List
-  Uint8List _imageUint8List = Uint8List(0);
+  Uint8List imageUint8List = Uint8List(0);
 
   /// Method to initiate the setBusy State
   void initiateLoading(bool value) {
@@ -81,7 +85,9 @@ class ReportUploadImageViewModel extends BaseViewModel {
     if (result != null) {
       _file = File(result.files.single.path!);
 
-      _imageUint8List = await _file.readAsBytes();
+      _fileName = path.basename(_file.path);
+
+      imageUint8List = await _file.readAsBytes();
 
       _selectedMedia.add(_file);
 
@@ -90,37 +96,15 @@ class ReportUploadImageViewModel extends BaseViewModel {
   }
 
   /// Method to route to the report update contact details view
-  void actionRouteToReportUpdateContactDetailsView() async {
-    _navigationService.navigateToReportUpdateContactDetailsView();
+  void actionRouteToReportUpdateContactDetailsView(String reportReason) async {
+    String imageUrl = await _firebaseService.uploadImage(
+        fileName: _fileName, imageFile: _file);
+
+    if (imageUrl.isNotEmpty) {
+      _navigationService.navigateToReportUpdateContactDetailsView(
+          reportReason: reportReason, imageUrl: imageUrl);
+    } else {
+      showToast(message: "An unexpected error occured... Kindly try again");
+    }
   }
-
-  /// Method to get Food Details
-  // Future getFoodDetails() async {
-  //   try {
-  //     initiateLoading(true);
-  //     String response = await _generativeAiClientService
-  //             .generateFoodDetails(_imageUint8List) ??
-  //         "";
-  //     initiateLoading(false);
-
-  //     Map mapResponse = jsonDecode(response);
-
-  //     _logger.i("Response: $mapResponse");
-
-  //     if (mapResponse.isEmpty) {
-  //       actionRemoveImage();
-  //       _utilsService.errorMsgNotification(
-  //           text:
-  //               "Kindly upload an image of your preferred food that is not too blurry");
-  //     } else {
-  //       actionRouteToDashboard(mapResponse);
-  //     }
-  //   } on CalpalException catch (e) {
-  //     _logger.e(
-  //         'An error occurred while trying to get food details', e.message);
-  //   } catch (e, s) {
-  //     _logger.e(
-  //         'A major error occurred while trying to get food details', e, s);
-  //   }
-  // }
 }

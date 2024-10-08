@@ -4,10 +4,13 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'dart:async' as _i5;
+import 'dart:io' as _i10;
 import 'dart:ui' as _i6;
 
+import 'package:civic_24/models/report_model.dart' as _i11;
 import 'package:civic_24/services/firebase_service.dart' as _i8;
 import 'package:civic_24/services/secure_storage_service.dart' as _i7;
+import 'package:firebase_auth/firebase_auth.dart' as _i9;
 import 'package:flutter/material.dart' as _i4;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:mockito/src/dummies.dart' as _i3;
@@ -746,4 +749,112 @@ class MockSecureStorageService extends _i1.Mock
 /// A class which mocks [FirebaseService].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockFirebaseService extends _i1.Mock implements _i8.FirebaseService {}
+class MockFirebaseService extends _i1.Mock implements _i8.FirebaseService {
+  @override
+  _i5.Future<_i9.User?> signUpWithEmailAndPassword(
+    String? email,
+    String? password,
+  ) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #signUpWithEmailAndPassword,
+          [
+            email,
+            password,
+          ],
+        ),
+        returnValue: _i5.Future<_i9.User?>.value(),
+        returnValueForMissingStub: _i5.Future<_i9.User?>.value(),
+      ) as _i5.Future<_i9.User?>);
+
+  @override
+  _i5.Future<_i9.User?> signInWithEmailAndPassword(
+    String? email,
+    String? password,
+  ) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #signInWithEmailAndPassword,
+          [
+            email,
+            password,
+          ],
+        ),
+        returnValue: _i5.Future<_i9.User?>.value(),
+        returnValueForMissingStub: _i5.Future<_i9.User?>.value(),
+      ) as _i5.Future<_i9.User?>);
+
+  @override
+  void signOut(
+    String? email,
+    String? password,
+  ) =>
+      super.noSuchMethod(
+        Invocation.method(
+          #signOut,
+          [
+            email,
+            password,
+          ],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  _i5.Future<String> uploadImage({
+    required String? fileName,
+    required _i10.File? imageFile,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #uploadImage,
+          [],
+          {
+            #fileName: fileName,
+            #imageFile: imageFile,
+          },
+        ),
+        returnValue: _i5.Future<String>.value(_i3.dummyValue<String>(
+          this,
+          Invocation.method(
+            #uploadImage,
+            [],
+            {
+              #fileName: fileName,
+              #imageFile: imageFile,
+            },
+          ),
+        )),
+        returnValueForMissingStub:
+            _i5.Future<String>.value(_i3.dummyValue<String>(
+          this,
+          Invocation.method(
+            #uploadImage,
+            [],
+            {
+              #fileName: fileName,
+              #imageFile: imageFile,
+            },
+          ),
+        )),
+      ) as _i5.Future<String>);
+
+  @override
+  _i5.Stream<List<_i11.ReportModel>> getUserReports() => (super.noSuchMethod(
+        Invocation.method(
+          #getUserReports,
+          [],
+        ),
+        returnValue: _i5.Stream<List<_i11.ReportModel>>.empty(),
+        returnValueForMissingStub: _i5.Stream<List<_i11.ReportModel>>.empty(),
+      ) as _i5.Stream<List<_i11.ReportModel>>);
+
+  @override
+  void createReport(_i11.ReportModel? reportModel) => super.noSuchMethod(
+        Invocation.method(
+          #createReport,
+          [reportModel],
+        ),
+        returnValueForMissingStub: null,
+      );
+}

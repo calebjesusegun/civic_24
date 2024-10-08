@@ -27,96 +27,99 @@ class LoginView extends StackedView<LoginViewModel> with $LoginView {
     LoginViewModel viewModel,
     Widget? child,
   ) {
-    return Scaffold(
-      backgroundColor: AppColors.kcWhite,
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: EdgeInsets.symmetric(
-              horizontal: sidePadding,
-            ),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(
-                  height: 10.h,
-                ),
-                Align(
-                  alignment: Alignment.center,
-                  child: Image.asset(
-                    AppImages.appLogo,
-                    width: 80.w,
+    return AbsorbPointer(
+      absorbing: viewModel.loadingStateStatus,
+      child: Scaffold(
+        backgroundColor: AppColors.kcWhite,
+        body: SafeArea(
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: EdgeInsets.symmetric(
+                horizontal: sidePadding,
+              ),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(
+                    height: 10.h,
                   ),
-                ),
-                SizedBox(
-                  height: 20.h,
-                ),
-                Text(
-                  AppText.ksWelcome,
-                  style: AppTextStyles.titleRegularSize16.copyWith(
-                      fontSize: 19.sp,
-                      fontWeight: FontWeight.w500,
-                      color: AppColors.kcGray0),
-                ),
-                SizedBox(
-                  height: 6.h,
-                ),
-                Text(
-                  AppText.ksWelcomeDetails,
-                  style: AppTextStyles.titleRegularSize16.copyWith(
-                      fontSize: 14.sp,
-                      fontWeight: FontWeight.w400,
-                      color: AppColors.kcGray30),
-                ),
-                SizedBox(
-                  height: 20.h,
-                ),
-                CustomTextField(
-                  label: AppText.ksEmailAddress,
-                  keyBoardType: TextInputType.emailAddress,
-                  validator: (val) =>
-                      Validation.validateField(AppText.ksEmailAddressRequired),
-                  hintText: AppText.ksEmailAddress,
-                  textInputAction: TextInputAction.next,
-                  controller: emailController,
-                  focusNode: emailFocusNode,
-                ),
-                SizedBox(
-                  height: 20.h,
-                ),
-                CustomTextField(
-                  label: AppText.ksPassword,
-                  keyBoardType: TextInputType.text,
-                  validator: (val) =>
-                      Validation.validateField(AppText.ksPasswordRequired),
-                  hintText: AppText.ksPassword,
-                  textInputAction: TextInputAction.next,
-                  controller: passwordController,
-                  focusNode: passwordFocusNode,
-                  showVisibilityToggle: true,
-                ),
-                SizedBox(
-                  height: 40.h,
-                ),
-                PrimaryButton(
-                  buttonText: AppText.ksProceed,
-                  onTap: () => viewModel.submit(
-                      emailController.text, passwordController.text),
-                  isDisabled: (emailController.text.isEmpty ||
-                      passwordController.text.isEmpty),
-                  loadingStateStatus: false,
-                ),
-                SizedBox(
-                  height: 12.h,
-                ),
-                CustomRichTextButton(
-                  buttonText: AppText.ksSignUp,
-                  labelText: AppText.ksDontHaveAnAccount,
-                  onTap: () => viewModel.actionRouteToRegisterView(),
-                ),
-              ],
+                  Align(
+                    alignment: Alignment.center,
+                    child: Image.asset(
+                      AppImages.appLogo,
+                      width: 80.w,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 20.h,
+                  ),
+                  Text(
+                    AppText.ksWelcome,
+                    style: AppTextStyles.titleRegularSize16.copyWith(
+                        fontSize: 19.sp,
+                        fontWeight: FontWeight.w500,
+                        color: AppColors.kcGray0),
+                  ),
+                  SizedBox(
+                    height: 6.h,
+                  ),
+                  Text(
+                    AppText.ksWelcomeDetails,
+                    style: AppTextStyles.titleRegularSize16.copyWith(
+                        fontSize: 14.sp,
+                        fontWeight: FontWeight.w400,
+                        color: AppColors.kcGray30),
+                  ),
+                  SizedBox(
+                    height: 20.h,
+                  ),
+                  CustomTextField(
+                    label: AppText.ksEmailAddress,
+                    keyBoardType: TextInputType.emailAddress,
+                    validator: (val) => Validation.validateField(
+                        AppText.ksEmailAddressRequired),
+                    hintText: AppText.ksEmailAddress,
+                    textInputAction: TextInputAction.next,
+                    controller: emailController,
+                    focusNode: emailFocusNode,
+                  ),
+                  SizedBox(
+                    height: 20.h,
+                  ),
+                  CustomTextField(
+                    label: AppText.ksPassword,
+                    keyBoardType: TextInputType.text,
+                    validator: (val) =>
+                        Validation.validateField(AppText.ksPasswordRequired),
+                    hintText: AppText.ksPassword,
+                    textInputAction: TextInputAction.next,
+                    controller: passwordController,
+                    focusNode: passwordFocusNode,
+                    showVisibilityToggle: true,
+                  ),
+                  SizedBox(
+                    height: 40.h,
+                  ),
+                  PrimaryButton(
+                    buttonText: AppText.ksProceed,
+                    onTap: () => viewModel.submit(
+                        emailController.text, passwordController.text),
+                    isDisabled: (emailController.text.isEmpty ||
+                        passwordController.text.isEmpty),
+                    loadingStateStatus: viewModel.loadingStateStatus,
+                  ),
+                  SizedBox(
+                    height: 12.h,
+                  ),
+                  CustomRichTextButton(
+                    buttonText: AppText.ksSignUp,
+                    labelText: AppText.ksDontHaveAnAccount,
+                    onTap: () => viewModel.actionRouteToRegisterView(),
+                  ),
+                ],
+              ),
             ),
           ),
         ),

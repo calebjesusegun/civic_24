@@ -16,7 +16,6 @@ class SingleReport extends StackedView<SingleReportModel> {
     required this.location,
     required this.contactNumber,
     required this.contactEmail,
-    required this.linkStatus,
     required this.linkStatusColor,
     required this.linkStatusBackgroundColor,
     required this.reportTitle,
@@ -31,7 +30,6 @@ class SingleReport extends StackedView<SingleReportModel> {
   final String location;
   final String contactNumber;
   final String contactEmail;
-  final String linkStatus;
   final Color linkStatusColor;
   final Color linkStatusBackgroundColor;
 
@@ -161,7 +159,7 @@ class SingleReport extends StackedView<SingleReportModel> {
                       ),
                       SizedBox(width: 4.w),
                       Text(
-                        linkStatus,
+                        reportStatus,
                         style: AppTextStyles.titleRegularSize16.copyWith(
                           fontWeight: FontWeight.w500,
                           fontSize: 12.sp,

@@ -23,7 +23,12 @@ import 'report_update_contact_details_viewmodel.dart';
 class ReportUpdateContactDetailsView
     extends StackedView<ReportUpdateContactDetailsViewModel>
     with $ReportUpdateContactDetailsView {
-  const ReportUpdateContactDetailsView({Key? key}) : super(key: key);
+  const ReportUpdateContactDetailsView(
+      {required this.reportReason, required this.imageUrl, Key? key})
+      : super(key: key);
+
+  final String imageUrl;
+  final String reportReason;
 
   @override
   Widget builder(
@@ -259,7 +264,9 @@ class ReportUpdateContactDetailsView
           ),
           child: PrimaryButton(
             buttonText: AppText.ksSubmitReport,
-            onTap: () => viewModel.actionRouteToRegisterPasswordView(
+            onTap: () => viewModel.submit(
+                reportReason: reportReason,
+                imageUrl: imageUrl,
                 number: contactNumberController.text,
                 address: addressController.text,
                 location: locationController.text,

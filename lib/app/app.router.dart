@@ -171,8 +171,13 @@ class StackedRouter extends _i1.RouterBase {
       );
     },
     _i11.ReportUpdateContactDetailsView: (data) {
+      final args =
+          data.getArgs<ReportUpdateContactDetailsViewArguments>(nullOk: false);
       return _i12.MaterialPageRoute<dynamic>(
-        builder: (context) => const _i11.ReportUpdateContactDetailsView(),
+        builder: (context) => _i11.ReportUpdateContactDetailsView(
+            reportReason: args.reportReason,
+            imageUrl: args.imageUrl,
+            key: args.key),
         settings: data,
       );
     },
@@ -285,6 +290,38 @@ class ReportUploadImageViewArguments {
   @override
   int get hashCode {
     return reportReason.hashCode ^ key.hashCode;
+  }
+}
+
+class ReportUpdateContactDetailsViewArguments {
+  const ReportUpdateContactDetailsViewArguments({
+    required this.reportReason,
+    required this.imageUrl,
+    this.key,
+  });
+
+  final String reportReason;
+
+  final String imageUrl;
+
+  final _i12.Key? key;
+
+  @override
+  String toString() {
+    return '{"reportReason": "$reportReason", "imageUrl": "$imageUrl", "key": "$key"}';
+  }
+
+  @override
+  bool operator ==(covariant ReportUpdateContactDetailsViewArguments other) {
+    if (identical(this, other)) return true;
+    return other.reportReason == reportReason &&
+        other.imageUrl == imageUrl &&
+        other.key == key;
+  }
+
+  @override
+  int get hashCode {
+    return reportReason.hashCode ^ imageUrl.hashCode ^ key.hashCode;
   }
 }
 
@@ -436,14 +473,19 @@ extension NavigatorStateExtension on _i13.NavigationService {
         transition: transition);
   }
 
-  Future<dynamic> navigateToReportUpdateContactDetailsView([
+  Future<dynamic> navigateToReportUpdateContactDetailsView({
+    required String reportReason,
+    required String imageUrl,
+    _i12.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
         transition,
-  ]) async {
+  }) async {
     return navigateTo<dynamic>(Routes.reportUpdateContactDetailsView,
+        arguments: ReportUpdateContactDetailsViewArguments(
+            reportReason: reportReason, imageUrl: imageUrl, key: key),
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,
@@ -597,14 +639,19 @@ extension NavigatorStateExtension on _i13.NavigationService {
         transition: transition);
   }
 
-  Future<dynamic> replaceWithReportUpdateContactDetailsView([
+  Future<dynamic> replaceWithReportUpdateContactDetailsView({
+    required String reportReason,
+    required String imageUrl,
+    _i12.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
         transition,
-  ]) async {
+  }) async {
     return replaceWith<dynamic>(Routes.reportUpdateContactDetailsView,
+        arguments: ReportUpdateContactDetailsViewArguments(
+            reportReason: reportReason, imageUrl: imageUrl, key: key),
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,

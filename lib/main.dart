@@ -1,3 +1,5 @@
+import 'package:civic_24/firebase_options.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:civic_24/app/app.bottomsheets.dart';
 import 'package:civic_24/app/app.dialogs.dart';
@@ -8,6 +10,9 @@ import 'package:stacked_services/stacked_services.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   await setupLocator();
   setupDialogUi();
   setupBottomSheetUi();

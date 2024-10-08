@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "605364404859",
+    "project_id": "civic24-17d66",
+    "storage_bucket": "civic24-17d66.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:605364404859:android:c4575abd5f68748f8718de",
+        "android_client_info": {
+          "package_name": "com.civic24.mobile"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAPc4N5PT44J1ey6lGez-h_SfS5eOaYScQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -193,8 +193,8 @@ class ReportUploadImageView extends StackedView<ReportUploadImageViewModel> {
           ),
           child: PrimaryButton(
             buttonText: AppText.ksSubmitReport,
-            onTap: () =>
-                viewModel.actionRouteToReportUpdateContactDetailsView(),
+            onTap: () => viewModel
+                .actionRouteToReportUpdateContactDetailsView(reportReason),
             isDisabled: viewModel.getDisabledState(),
             loadingStateStatus: viewModel.loadingStateStatus,
           ),

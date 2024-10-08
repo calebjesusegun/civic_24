@@ -31,83 +31,87 @@ class RegisterPasswordView extends StackedView<RegisterPasswordViewModel>
     RegisterPasswordViewModel viewModel,
     Widget? child,
   ) {
-    return Scaffold(
-      backgroundColor: AppColors.kcWhite,
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: EdgeInsets.symmetric(
-              horizontal: sidePadding,
-            ),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(
-                  height: 10.h,
-                ),
-                Material(
-                  color: AppColors.kcTransparent,
-                  child: InkWell(
-                    onTap: () => viewModel.actionRouteBack(),
-                    child: Align(
-                      alignment: Alignment.topLeft,
-                      child: SvgPicture.asset(
-                        AppImages.backButton,
+    return AbsorbPointer(
+      absorbing: viewModel.loadingStateStatus,
+      child: Scaffold(
+        backgroundColor: AppColors.kcWhite,
+        body: SafeArea(
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: EdgeInsets.symmetric(
+                horizontal: sidePadding,
+              ),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(
+                    height: 10.h,
+                  ),
+                  Material(
+                    color: AppColors.kcTransparent,
+                    child: InkWell(
+                      onTap: () => viewModel.actionRouteBack(),
+                      child: Align(
+                        alignment: Alignment.topLeft,
+                        child: SvgPicture.asset(
+                          AppImages.backButton,
+                        ),
                       ),
                     ),
                   ),
-                ),
-                SizedBox(
-                  height: 20.h,
-                ),
-                Text(
-                  AppText.ksPassword,
-                  style: AppTextStyles.titleRegularSize16.copyWith(
-                      fontSize: 19.sp,
-                      fontWeight: FontWeight.w500,
-                      color: AppColors.kcGray0),
-                ),
-                SizedBox(
-                  height: 6.h,
-                ),
-                Text(
-                  AppText.ksPreferredPassword,
-                  style: AppTextStyles.titleRegularSize16.copyWith(
-                      fontSize: 14.sp,
-                      fontWeight: FontWeight.w400,
-                      color: AppColors.kcGray30),
-                ),
-                SizedBox(
-                  height: 20.h,
-                ),
-                CustomTextField(
-                  label: AppText.ksPassword,
-                  keyBoardType: TextInputType.text,
-                  validator: (val) =>
-                      Validation.validateField(AppText.ksPasswordRequired),
-                  hintText: AppText.ksPassword,
-                  textInputAction: TextInputAction.next,
-                  controller: passwordController,
-                  focusNode: passwordFocusNode,
-                  showVisibilityToggle: true,
-                ),
-              ],
+                  SizedBox(
+                    height: 20.h,
+                  ),
+                  Text(
+                    AppText.ksPassword,
+                    style: AppTextStyles.titleRegularSize16.copyWith(
+                        fontSize: 19.sp,
+                        fontWeight: FontWeight.w500,
+                        color: AppColors.kcGray0),
+                  ),
+                  SizedBox(
+                    height: 6.h,
+                  ),
+                  Text(
+                    AppText.ksPreferredPassword,
+                    style: AppTextStyles.titleRegularSize16.copyWith(
+                        fontSize: 14.sp,
+                        fontWeight: FontWeight.w400,
+                        color: AppColors.kcGray30),
+                  ),
+                  SizedBox(
+                    height: 20.h,
+                  ),
+                  CustomTextField(
+                    label: AppText.ksPassword,
+                    keyBoardType: TextInputType.text,
+                    validator: (val) =>
+                        Validation.validateField(AppText.ksPasswordRequired),
+                    hintText: AppText.ksPassword,
+                    textInputAction: TextInputAction.next,
+                    controller: passwordController,
+                    focusNode: passwordFocusNode,
+                    showVisibilityToggle: true,
+                  ),
+                ],
+              ),
             ),
           ),
         ),
-      ),
-      bottomNavigationBar: Container(
-        padding: EdgeInsets.symmetric(
-          horizontal: sidePadding,
-          vertical: 36.h,
-        ),
-        child: PrimaryButton(
-          buttonText: AppText.ksProceed,
-          onTap: () => viewModel.submit(emailAddress, passwordController.text),
-          isDisabled: passwordController.text.isEmpty,
-          loadingStateStatus: false,
+        bottomNavigationBar: Container(
+          padding: EdgeInsets.symmetric(
+            horizontal: sidePadding,
+            vertical: 36.h,
+          ),
+          child: PrimaryButton(
+            buttonText: AppText.ksProceed,
+            onTap: () =>
+                viewModel.submit(emailAddress, passwordController.text),
+            isDisabled: passwordController.text.isEmpty,
+            loadingStateStatus: viewModel.loadingStateStatus,
+          ),
         ),
       ),
     );
